@@ -1,0 +1,13 @@
+module mux_2to1 (
+    input wire i0, i1,
+    input wire sel,
+    output reg y
+);
+    always @(*) begin
+        case (sel)
+            1'b0: y = i0;
+            1'b1: y = i1;
+            default: y = 1'b0;
+        endcase
+    end
+endmodule
