@@ -1,0 +1,31 @@
+
+`timescale 1ns/1ps
+
+module mux4to1_test;
+
+  reg [3:0] i;
+  reg [1:0] sel;
+  wire y;
+
+  mux4to1 dut (
+    .i0(i[0]),
+    .i1(i[1]),
+    .i2(i[2]),
+    .i3(i[3]),
+    .sel(sel),
+    .y(y)
+  );
+
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, mux4to1_test);
+
+    i = 4'b0000; sel = 2'b00; #10;
+    i = 4'b1010; sel = 2'b00; #10;
+    i = 4'b1010; sel = 2'b01; #10;
+    i = 4'b1010; sel = 2'b10; #10;
+    i = 4'b1010; sel = 2'b11; #10;
+    $finish;
+  end
+
+endmodule
