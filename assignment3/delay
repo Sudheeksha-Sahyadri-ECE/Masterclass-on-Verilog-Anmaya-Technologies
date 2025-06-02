@@ -1,0 +1,10 @@
+delay element
+
+  
+  module delay_element(clk, sel, a, q);
+input clk, sel, a;
+output reg q;
+wire d;
+assign d = (sel == 1'b0) ? a : q;
+always @(posedge clk) q <= d;
+endmodule
