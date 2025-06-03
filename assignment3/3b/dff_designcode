@@ -1,0 +1,45 @@
+module d_flipflop_test();
+
+reg clk;
+reg reset;
+reg d;
+wire q;
+
+
+d_flipflop uut (
+    .clk(clk),
+    .reset(reset),
+    .d(d),
+    .q(q)
+);
+
+initial clk = 0;
+always #5 clk = ~clk;
+
+initial begin
+    
+    reset = 1;
+    d = 0;
+
+  
+    #12 reset = 0;
+    
+    
+    #10 d = 1;
+    #10 d = 0;
+    #10 d = 1;
+    #10 d = 1;
+    #10 d = 0;
+
+    #20 $finish;  
+end
+
+
+
+
+initial begin
+    $dumpfile("d_flipflop_tb.vcd");
+    $dumpvars(0, tb_d_flipflop);     
+end
+
+endmodule
